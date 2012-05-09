@@ -11,56 +11,17 @@ import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.DocumentHelper;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.core.io.Resource;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import dan.langford.ssl.OldEasySSLSocketFactory;
+import dan.langford.resteasy.Response;
+import dan.langford.ssl.EasySSLSocketFactory;
 
 public class RestEasy {
-
-	public static class Response {
-
-		private ResponseEntity<String> resp;
-
-		public Response(ResponseEntity<String> resp) {
-			this.resp = resp;
-		}
-
-		public int statusCode() {
-			return resp.getStatusCode().value();
-		}
-		
-		public String asString() {
-			return resp.getBody();
-		}
-
-		public JSONObject asJSON() {
-			try {
-				return new JSONObject(resp.getBody());
-			} catch (JSONException e) {
-				return null;
-			}
-		}
-
-		public Document asXML() {
-			try {
-				return DocumentHelper.parseText(resp.getBody());
-			} catch (DocumentException e) {
-				return null;
-			}
-		}
-
-	}
 
 	private static abstract class RestMethod {
 		
@@ -86,13 +47,10 @@ public class RestEasy {
 		}
 		
 		protected void doBadSSL() {
-			//client.getConnectionManager().getSchemeRegistry().register(new Scheme("https", 443, new NewEasySSLSocketFactory()));
-			client.getConnectionManager().getSchemeRegistry().register(new Scheme("https", new OldEasySSLSocketFactory(), 443));
+			client.getConnectionManager().getSchemeRegistry().register(new Scheme("https", 443, new EasySSLSocketFactory()));
 		}
 		
 	}
-	
-	
 
 	public static class Getter extends RestMethod {
 		Getter(String url) {

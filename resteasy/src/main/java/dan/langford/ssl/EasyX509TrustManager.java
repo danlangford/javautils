@@ -32,19 +32,19 @@ import javax.net.ssl.X509TrustManager;
 
 /**
  * @author olamy
- * @version $Id: OldEasyX509TrustManager.java 765355 2009-04-15 20:59:07Z evenisse $
+ * @version $Id: EasyX509TrustManager.java 765355 2009-04-15 20:59:07Z evenisse $
  * @since 1.2.3
  */
-public class OldEasyX509TrustManager
+public class EasyX509TrustManager
     implements X509TrustManager
 {
 
     private X509TrustManager standardTrustManager = null;
 
     /**
-     * Constructor for OldEasyX509TrustManager.
+     * Constructor for EasyX509TrustManager.
      */
-    public OldEasyX509TrustManager( KeyStore keystore )
+    public EasyX509TrustManager( KeyStore keystore )
         throws NoSuchAlgorithmException, KeyStoreException
     {
         super();
@@ -79,7 +79,7 @@ public class OldEasyX509TrustManager
         }
         else
         {
-            //standardTrustManager.checkServerTrusted( certificates, authType );
+            // standardTrustManager.checkServerTrusted( certificates, authType ); // HOT SACUE!!
         }
     }
 

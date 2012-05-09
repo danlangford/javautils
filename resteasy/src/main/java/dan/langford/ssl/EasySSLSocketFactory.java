@@ -39,18 +39,18 @@ import org.apache.http.params.HttpParams;
  * certificate
  * 
  * @author olamy
- * @version $Id: NewEasySSLSocketFactory.java 765355 2009-04-15 20:59:07Z evenisse
+ * @version $Id: EasySSLSocketFactory.java 765355 2009-04-15 20:59:07Z evenisse
  *          $
  * @since 1.2.3
  */
-public class NewEasySSLSocketFactory implements LayeredSchemeSocketFactory {
+public class EasySSLSocketFactory implements LayeredSchemeSocketFactory {
 
 	private SSLContext sslcontext = null;
 
-	private static SSLContext createNewEasySSLContext() throws IOException {
+	private static SSLContext createEasySSLContext() throws IOException {
 		try {
 			SSLContext context = SSLContext.getInstance("TLS");
-			context.init(null, new TrustManager[] { new NewEasyX509TrustManager(
+			context.init(null, new TrustManager[] { new EasyX509TrustManager(
 					null) }, null);
 			return context;
 		} catch (Exception e) {
@@ -60,7 +60,7 @@ public class NewEasySSLSocketFactory implements LayeredSchemeSocketFactory {
 
 	private SSLContext getSSLContext() throws IOException {
 		if (this.sslcontext == null) {
-			this.sslcontext = createNewEasySSLContext();
+			this.sslcontext = createEasySSLContext();
 		}
 		return this.sslcontext;
 	}
