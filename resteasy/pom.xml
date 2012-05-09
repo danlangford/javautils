@@ -37,7 +37,7 @@
 
 	<properties>
 		<altDeploymentRepository>
-			my-local-repo::default::file://${basedir}/repo/
+			my-local-repo::default::file://${basedir}/../repo/
 		</altDeploymentRepository>
 	</properties>
 
