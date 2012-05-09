@@ -1,0 +1,23 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>dan.langford</groupId>
+	<artifactId>javautils</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>javautils</name>
+	<description>a collection of things</description>
+
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>funserver</module>
+		<module>resteasy</module>
+	</modules>
+
+	<properties>
+		<altDeploymentRepository>
+			my-local-repo::default::file://${basedir}/repo/
+		</altDeploymentRepository>
+	</properties>
+
+</project>
