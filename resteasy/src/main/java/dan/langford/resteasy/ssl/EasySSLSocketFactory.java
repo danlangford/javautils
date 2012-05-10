@@ -1,4 +1,4 @@
-package dan.langford.ssl;
+package dan.langford.resteasy.ssl;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one

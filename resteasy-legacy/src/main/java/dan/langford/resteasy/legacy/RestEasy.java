@@ -33,6 +33,7 @@ public class RestEasy {
 
 			this.reqFac = new CommonsClientHttpRequestFactory(this.client);
 			this.rest = new RestTemplate(this.reqFac);
+			this.rest.setErrorHandler(new EasyResponseErrorHandler());
 			
 		}
 		

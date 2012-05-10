@@ -1,11 +1,4 @@
-package dan.langford;
-
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
+package dan.langford.resteasy;
 
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -18,8 +11,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import dan.langford.resteasy.Response;
-import dan.langford.ssl.EasySSLSocketFactory;
+import dan.langford.resteasy.ssl.EasySSLSocketFactory;
 
 public class RestEasy {
 
@@ -37,6 +29,7 @@ public class RestEasy {
 
 			this.reqFac = new HttpComponentsClientHttpRequestFactory(this.client);
 			this.rest = new RestTemplate(this.reqFac);
+			this.rest.setErrorHandler(new EasyResponseErrorHandler());
 			
 		}
 		
@@ -147,28 +140,6 @@ public class RestEasy {
 	
 	public static Deleter delete(String url) {
 		return new Deleter(url);
-	}
-	
-	public static void trustSelfSignedSSL() {
-	    try {
-	        SSLContext ctx = SSLContext.getInstance("TLS");
-	        X509TrustManager tm = new X509TrustManager() {
-
-	            public void checkClientTrusted(X509Certificate[] xcs, String string) throws CertificateException {
-	            }
-
-	            public void checkServerTrusted(X509Certificate[] xcs, String string) throws CertificateException {
-	            }
-
-	            public X509Certificate[] getAcceptedIssuers() {
-	                return null;
-	            }
-	        };
-	        ctx.init(null, new TrustManager[]{tm}, null);
-	        SSLContext.setDefault(ctx);
-	    } catch (Exception ex) {
-	        ex.printStackTrace();
-	    }
 	}
 
 }

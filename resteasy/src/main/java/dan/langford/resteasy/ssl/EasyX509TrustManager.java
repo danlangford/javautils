@@ -1,4 +1,4 @@
-package dan.langford.ssl;
+package dan.langford.resteasy.ssl;
 
 
 /*
