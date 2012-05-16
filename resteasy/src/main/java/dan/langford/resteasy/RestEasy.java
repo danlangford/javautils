@@ -1,5 +1,8 @@
 package dan.langford.resteasy;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.conn.scheme.Scheme;
@@ -21,6 +24,7 @@ public class RestEasy {
 		private ClientHttpRequestFactory reqFac;
 		protected RestTemplate rest;
 		protected String url;
+		protected Map<String,String> urlVariables;
 		
 		RestMethod(String url) {
 		    
@@ -30,6 +34,8 @@ public class RestEasy {
 			this.reqFac = new HttpComponentsClientHttpRequestFactory(this.client);
 			this.rest = new RestTemplate(this.reqFac);
 			this.rest.setErrorHandler(new EasyResponseErrorHandler());
+			
+			this.urlVariables = new HashMap<String, String>();
 			
 		}
 		
@@ -41,6 +47,10 @@ public class RestEasy {
 		
 		protected void doBadSSL() {
 			client.getConnectionManager().getSchemeRegistry().register(new Scheme("https", 443, new EasySSLSocketFactory()));
+		}
+		
+		protected void doVar(String var, String val) {
+			urlVariables.put(var, val);
 		}
 		
 	}
@@ -60,8 +70,13 @@ public class RestEasy {
 			return this;
 		}
 		
+		public Getter var(String var, String val) {
+			doVar(var, val);
+			return this;
+		}
+		
 		public Response response() {
-			return new Response(rest.getForEntity(url, String.class));
+			return new Response(rest.getForEntity(url, String.class, this.urlVariables));
 		}
 
 	}
@@ -84,9 +99,14 @@ public class RestEasy {
 			doBadSSL();
 			return this;
 		}
+		
+		public Poster var(String var, String val) {
+			doVar(var, val);
+			return this;
+		}
 
 		public Response response() {
-			return new Response(rest.postForEntity(url, parts, String.class));
+			return new Response(rest.postForEntity(url, parts, String.class, this.urlVariables));
 		}
 
 		public Poster attachFile(String id, Resource file) {
@@ -113,6 +133,15 @@ public class RestEasy {
 		Putter(String url) {
 			super(url);
 		}
+		
+		public Putter var(String var, String val) {
+			doVar(var, val);
+			return this;
+		}
+		
+		public void go() {
+			//rest.put(url, this.urlVariables);
+		}
 
 	}
 	
@@ -121,8 +150,13 @@ public class RestEasy {
 			super(url);
 		}
 		
+		public Deleter var(String var, String val) {
+			doVar(var, val);
+			return this;
+		}
+		
 		public void go() {
-			rest.delete(url);
+			rest.delete(url, this.urlVariables);
 		}
 	}
 
