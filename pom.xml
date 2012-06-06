@@ -4,13 +4,12 @@
 	<groupId>dan.langford.tools</groupId>
 	<artifactId>dL-tools-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>javautils</name>
+	<name>dL-tools-parent</name>
 	<description>a collection of things</description>
 
 	<packaging>pom</packaging>
 
 	<modules>
-		<!-- <module>funserver</module> -->
 		<module>resteasy</module>
 		<module>resteasy-legacy</module>
 	</modules>
