@@ -10,7 +10,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>funserver</module>
+		<!-- <module>funserver</module> -->
 		<module>resteasy</module>
 		<module>resteasy-legacy</module>
 	</modules>

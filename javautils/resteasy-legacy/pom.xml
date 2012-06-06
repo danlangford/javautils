@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>dan.langford</groupId>
 	<artifactId>resteasy-legacy</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>resteasy-legacy</name>
 	<description>a wrapper library around ugly java for easily testing rest calls</description>
 

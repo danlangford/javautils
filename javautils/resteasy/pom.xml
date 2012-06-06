@@ -3,15 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>dan.langford</groupId>
 	<artifactId>resteasy</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>resteasy</name>
 	<description>a wrapper library around ugly java for easily testing rest calls</description>
 
-	<parent>
-		<groupId>org.lds.stack</groupId>
-		<artifactId>stack-master</artifactId>
-		<version>3.2.3</version>
-	</parent>
+
 
 	<dependencies>
 
