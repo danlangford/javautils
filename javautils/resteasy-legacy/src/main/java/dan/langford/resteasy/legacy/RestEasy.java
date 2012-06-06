@@ -86,7 +86,7 @@ public class RestEasy {
 		}
 		
 		public Response response() {
-			Response resp = new Response(rest.getForEntity(url, String.class, this.urlVariables));
+			Response resp = new Response(rest.getForEntity(url, byte[].class, this.urlVariables));
 			doFinalize();
 			return resp;
 		}
@@ -118,7 +118,7 @@ public class RestEasy {
 		}
 
 		public Response response() {
-			Response resp = new Response(rest.postForEntity(url, parts, String.class, this.urlVariables));
+			Response resp = new Response(rest.postForEntity(url, parts, byte[].class, this.urlVariables));
 			doFinalize();
 			return resp;
 		}

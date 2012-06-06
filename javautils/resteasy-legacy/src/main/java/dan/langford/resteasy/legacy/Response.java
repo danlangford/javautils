@@ -11,25 +11,38 @@ import org.springframework.http.ResponseEntity;
 
 public class Response {
 
-	private ResponseEntity<String> resp;
+	private ResponseEntity<byte[]> resp;
+	private String body;
 
-	public Response(ResponseEntity<String> resp) {
+	public Response(ResponseEntity<byte[]> resp) {
 		this.resp = resp;
 	}
 
 	public int statusCode() {
 		return resp.getStatusCode().value();
 	}
+	
+	public byte[] asRawBytes() {
+		return resp.getBody();
+	}
 
 	public String asString() {
-		return resp.getBody();
+		if(body==null) {
+			body=new String(resp.getBody());
+		}
+		return body;
+	}
+	
+	@Override
+	public String toString() {
+		return asString();
 	}
 
 	public JsonNode asJson() {
 		try {
 			return new ObjectMapper().readValue(resp.getBody(), JsonNode.class);
 		} catch (IOException e0) {
-			String b = resp.getBody();
+			String b = asString();
 			int curl = b.indexOf('{');
 			int square = b.indexOf('[');
 			String newBody;
@@ -50,7 +63,7 @@ public class Response {
 
 	public Document asXML() {
 		try {
-			return DocumentHelper.parseText(resp.getBody());
+			return DocumentHelper.parseText(asString());
 		} catch (DocumentException e) {
 			return null;
 		}

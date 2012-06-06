@@ -6,8 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.testng.annotations.Test;
 
-import dan.langford.resteasy.legacy.Response;
-
 
 public class ResponseTest {
 	
@@ -26,7 +24,7 @@ public class ResponseTest {
 	
 	static class MockOKResponse extends Response {
 		public MockOKResponse(String body) {
-			super(new ResponseEntity<String>(body, HttpStatus.OK));
+			super(new ResponseEntity<byte[]>(body.getBytes(), HttpStatus.OK));
 		}
 	}
 

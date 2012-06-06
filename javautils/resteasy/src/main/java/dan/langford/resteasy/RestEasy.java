@@ -80,7 +80,7 @@ public class RestEasy {
 		}
 		
 		public Response response() {
-			return new Response(rest.getForEntity(url, String.class, this.urlVariables));
+			return new Response(rest.getForEntity(url, byte[].class, this.urlVariables));
 		}
 
 	}
@@ -110,7 +110,7 @@ public class RestEasy {
 		}
 
 		public Response response() {
-			return new Response(rest.postForEntity(url, parts, String.class, this.urlVariables));
+			return new Response(rest.postForEntity(url, parts, byte[].class, this.urlVariables));
 		}
 
 		public Poster attachFile(String id, Resource file) {

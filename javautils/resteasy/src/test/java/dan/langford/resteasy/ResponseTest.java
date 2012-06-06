@@ -23,7 +23,7 @@ public class ResponseTest {
 	
 	static class MockOKResponse extends Response {
 		public MockOKResponse(String body) {
-			super(new ResponseEntity<String>(body, HttpStatus.OK));
+			super(new ResponseEntity<byte[]>(body.getBytes(), HttpStatus.OK));
 		}
 	}
 

@@ -7,7 +7,11 @@
 	<name>resteasy</name>
 	<description>a wrapper library around ugly java for easily testing rest calls</description>
 
-
+	<parent>
+		<groupId>org.lds.stack</groupId>
+		<artifactId>stack-master</artifactId>
+		<version>3.2.3</version>
+	</parent>
 
 	<dependencies>
 
@@ -16,7 +20,7 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.1.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>dom4j</groupId>
 			<artifactId>dom4j</artifactId>
@@ -30,12 +34,12 @@
 		</dependency>
 
 		<!-- MANAGED -->
-		
+
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
