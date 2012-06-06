@@ -1,6 +1,8 @@
 package dan.langford.resteasy;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.zip.ZipInputStream;
 
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -67,6 +69,11 @@ public class Response {
 		} catch (DocumentException e) {
 			return null;
 		}
+	}
+	
+	public ZipStream asZipArchive() {
+		ZipInputStream zis = new ZipInputStream(new ByteArrayInputStream(asRawBytes()));
+		return new ZipStream(zis);
 	}
 
 }
