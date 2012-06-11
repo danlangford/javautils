@@ -14,5 +14,13 @@
 		<module>resteasy</module>
 		<module>resteasy-legacy</module>
 	</modules>
+
+	<distributionManagement>
+		<repository>
+			<id>icslib-nexus</id>
+			<name>Stack Repo</name>
+			<url>https://code.lds.org/nexus/content/repositories/snapshots</url>
+		</repository>
+	</distributionManagement>
 	
 </project>
