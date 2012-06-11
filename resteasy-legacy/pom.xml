@@ -4,14 +4,14 @@
 	<groupId>dan.langford.tools</groupId>
 	<artifactId>resteasy-legacy</artifactId>
 	<version>0.0.3-SNAPSHOT</version>
-	<name>resteasy-legacy</name>
+	<name>${project.artifactId}}</name>
 	<description>a wrapper library around ugly java for easily testing rest calls</description>
 
-	<parent>
+	<!-- <parent>
 		<groupId>org.lds.stack</groupId>
 		<artifactId>stack-master</artifactId>
 		<version>3.1.7</version>
-	</parent>
+	</parent> -->
 
 	<dependencies>
 
@@ -20,17 +20,15 @@
 			<artifactId>commons-httpclient</artifactId>
 			<version>3.1</version>
 		</dependency>
-
 		<dependency>
 			<groupId>dom4j</groupId>
 			<artifactId>dom4j</artifactId>
 			<version>1.6.1</version>
 		</dependency>
-		
 		<dependency>
-		  <groupId>commons-io</groupId>
-		  <artifactId>commons-io</artifactId>
-		  <version>2.3</version>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.3</version>
 		</dependency>
 
 		<!-- MANAGED -->
@@ -38,16 +36,17 @@
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
+			<version>6.3.1</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
+			<version>3.0.7.RELEASE</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.4</version>
 		</dependency>
 
 	</dependencies>

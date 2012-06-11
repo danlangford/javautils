@@ -1,4 +1,5 @@
 package dan.langford.resteasy.legacy.ssl;
+
 /*
  * ====================================================================
  *
@@ -35,9 +36,6 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 /**
  * <p>
  * EasyX509TrustManager unlike default {@link X509TrustManager} accepts 
@@ -60,12 +58,9 @@ import org.apache.commons.logging.LogFactory;
  * </p>
  */
 
-public class EasyX509TrustManager implements X509TrustManager
-{
+public class EasyX509TrustManager implements X509TrustManager {
+	
     private X509TrustManager standardTrustManager = null;
-
-    /** Log object for this class. */
-    private static final Log LOG = LogFactory.getLog(EasyX509TrustManager.class);
 
     /**
      * Constructor for EasyX509TrustManager.
@@ -81,34 +76,29 @@ public class EasyX509TrustManager implements X509TrustManager
         this.standardTrustManager = (X509TrustManager)trustmanagers[0];
     }
 
-    /**
-     * @see javax.net.ssl.X509TrustManager#checkClientTrusted(X509Certificate[],String authType)
-     */
-    public void checkClientTrusted(X509Certificate[] certificates,String authType) throws CertificateException {
-        standardTrustManager.checkClientTrusted(certificates,authType);
-    }
+	/**
+	 * @see javax.net.ssl.X509TrustManager#checkClientTrusted(X509Certificate[], String authType)
+	 */
+	public void checkClientTrusted(X509Certificate[] certificates, String authType) throws CertificateException {
+		standardTrustManager.checkClientTrusted(certificates, authType);
+	}
 
-    /**
-     * @see javax.net.ssl.X509TrustManager#checkServerTrusted(X509Certificate[],String authType)
-     */
-    public void checkServerTrusted(X509Certificate[] certificates,String authType) throws CertificateException {
-        if ((certificates != null) && LOG.isDebugEnabled()) {
-            LOG.debug("Server certificate chain:");
-            for (int i = 0; i < certificates.length; i++) {
-                LOG.debug("X509Certificate[" + i + "]=" + certificates[i]);
-            }
-        }
-        if ((certificates != null) && (certificates.length == 1)) {
-            certificates[0].checkValidity();
-        } else {
-            // standardTrustManager.checkServerTrusted(certificates,authType); // HOT SAUCE!!
-        }
-    }
+	/**
+	 * @see javax.net.ssl.X509TrustManager#checkServerTrusted(X509Certificate[], String authType)
+	 */
+	public void checkServerTrusted(X509Certificate[] certificates, String authType) throws CertificateException {
+		if ((certificates != null) && (certificates.length == 1)) {
+			certificates[0].checkValidity();
+		}
+		else {
+			// standardTrustManager.checkServerTrusted(certificates,authType); // HOT SAUCE!!
+		}
+	}
 
-    /**
-     * @see javax.net.ssl.X509TrustManager#getAcceptedIssuers()
-     */
-    public X509Certificate[] getAcceptedIssuers() {
-        return this.standardTrustManager.getAcceptedIssuers();
-    }
+	/**
+	 * @see javax.net.ssl.X509TrustManager#getAcceptedIssuers()
+	 */
+	public X509Certificate[] getAcceptedIssuers() {
+		return this.standardTrustManager.getAcceptedIssuers();
+	}
 }

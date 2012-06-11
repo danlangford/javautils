@@ -9,30 +9,31 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
-import org.springframework.http.ResponseEntity;
 
-public class Response {
+public class Transformable {
 
-	private ResponseEntity<byte[]> resp;
-	private String body;
+	
+	private byte[] data;
+	private String strCache;
 
-	public Response(ResponseEntity<byte[]> resp) {
-		this.resp = resp;
-	}
-
-	public int statusCode() {
-		return resp.getStatusCode().value();
+	public Transformable(byte[] data) {
+		this.data = data;
 	}
 	
 	public byte[] asRawBytes() {
-		return resp.getBody();
+		return data;
+	}
+	
+
+	public ByteArrayInputStream asStream() {
+		return new ByteArrayInputStream(data);
 	}
 
 	public String asString() {
-		if(body==null) {
-			body=new String(resp.getBody());
+		if(strCache==null) {
+			strCache=new String(data);
 		}
-		return body;
+		return strCache;
 	}
 	
 	@Override
@@ -42,7 +43,7 @@ public class Response {
 
 	public JsonNode asJson() {
 		try {
-			return new ObjectMapper().readValue(resp.getBody(), JsonNode.class);
+			return new ObjectMapper().readValue(data, JsonNode.class);
 		} catch (IOException e0) {
 			String b = asString();
 			int curl = b.indexOf('{');
@@ -75,5 +76,6 @@ public class Response {
 		ZipInputStream zis = new ZipInputStream(new ByteArrayInputStream(asRawBytes()));
 		return new ZipStream(zis);
 	}
-
+	
+	
 }

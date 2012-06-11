@@ -1,27 +1,17 @@
 package dan.langford.resteasy.legacy;
 
-import java.io.ByteArrayInputStream;
 
-public class ZipChunk {
+public class ZipChunk extends Transformable {
 
 	private String name;
-	private byte[] content;
 
-	ZipChunk(String name, byte[] content) {
+	ZipChunk(byte[] data, String name) {
+		super(data);
 		this.name = name;
-		this.content = content;
 	}
 
 	public String getName() {
 		return name;
-	}
-
-	public byte[] getContent() {
-		return content;
-	}
-
-	public ByteArrayInputStream getContentAsStream() {
-		return new ByteArrayInputStream(content);
 	}
 
 }

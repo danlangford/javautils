@@ -18,8 +18,8 @@ public class ZipStream {
 		try {
 			ZipEntry entry = input.getNextEntry();
 			ZipChunk zc = new ZipChunk(
-					entry.getName(),
-					IOUtils.toByteArray(input));
+					IOUtils.toByteArray(input),
+					entry.getName());
 			return zc;
 		}
 		catch (IOException e) {
