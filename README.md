@@ -9,3 +9,4 @@ a simple collection of javautils i wrote that have come in handy
   - easily attach files to a POST, PUT
   - easily parsed into XML, JSON, etc. 
 * reasteasy-legacy - a resteasy implementation compatible with stack3.1/spring3.0/httpclient3
+
