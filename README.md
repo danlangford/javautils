@@ -10,4 +10,4 @@ a simple collection of javautils i wrote that have come in handy
   - easily parsed into XML, JSON, etc. 
 * reasteasy-legacy - a resteasy implementation compatible with stack3.1/spring3.0/httpclient3
 
-@danlangford
+twitter @danlangford
