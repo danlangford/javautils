@@ -11,3 +11,4 @@ a simple collection of javautils i wrote that have come in handy
 * reasteasy-legacy - a resteasy implementation compatible with stack3.1/spring3.0/httpclient3
 
 
+test
